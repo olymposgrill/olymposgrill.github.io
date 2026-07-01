@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Olympos Grill Iserlohn - Komplette Speisekarte</title>
+    <style>
+        :root {
+            --primary-blue: #0A3663;
+            --secondary-blue: #13508F;
+            --accent-gold: #D4AF37;
+            --light-bg: #F8F9FA;
+            --dark-text: #2B2D42;
+            --white: #FFFFFF;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light-bg);
+            color: var(--dark-text);
+            line-height: 1.6;
+        }
+
+        /* Top Bar / Banner */
+        .promo-banner {
+            background-color: var(--accent-gold);
+            color: var(--primary-blue);
+            text-align: center;
+            padding: 8px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        .logo-container h1 {
+            font-size: 2.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .logo-container p {
+            color: var(--accent-gold);
+            font-style: italic;
+            font-size: 1.2rem;
+        }
+
+        /* Hero / Call to Action */
+        .hero {
+            background: linear-gradient(rgba(10, 54, 99, 0.75), rgba(10, 54, 99, 0.75)), url('https://waldstadtpanorama-iserlohn.de/site/assets/files/2199/olympos_grill_mendener_strasse_132.1296x520.jpg') no-repeat center center/cover;
+            color: var(--white);
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .hero h2 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
+        }
+
+        .phone-btn {
+            display: inline-block;
+            background-color: var(--accent-gold);
+            color: var(--primary-blue);
+            padding: 15px 30px;
+            font-size: 1.4rem;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        .phone-btn:hover {
+            transform: scale(1.05);
+            background-color: #f1c40f;
+        }
+
+        /* Main Content Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Info Grid (Hours & Address) */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .info-card {
+            background: var(--white);
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-top: 4px solid var(--secondary-blue);
+        }
+
+        .info-card h3 {
+            color: var(--primary-blue);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        .info-card table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .info-card td {
+            padding: 6px 0;
+        }
+
+        .info-card td:last-child {
+            text-align: right;
+            font-weight: bold;
+        }
+
+        /* Menu Section */
+        .menu-title {
+            text-align: center;
+            color: var(--primary-blue);
+            margin: 50px 0 30px;
+            font-size: 2.2rem;
+            position: relative;
+        }
+
+        .menu-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background-color: var(--accent-gold);
+            margin: 10px auto 0;
+        }
+
+        .menu-category {
+            margin-bottom: 50px;
+        }
+
+        .category-name {
+            background-color: var(--secondary-blue);
+            color: var(--white);
+            padding: 12px 15px;
+            border-radius: 4px;
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 20px;
+        }
+
+        .menu-item {
+            background: var(--white);
+            padding: 15px 20px;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border-left: 3px solid transparent;
+            transition: border-color 0.2s;
+        }
+
+        .menu-item:hover {
+            border-left-color: var(--accent-gold);
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: var(--primary-blue);
+            margin-bottom: 5px;
+            gap: 10px;
+        }
+
+        .item-description {
+            font-size: 0.95rem;
+            color: #666;
+        }
+
+        .price-tag {
+            color: var(--dark-text);
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .pizza-prices {
+            font-size: 0.95rem;
+            color: var(--dark-text);
+            font-weight: bold;
+            display: flex;
+            gap: 15px;
+        }
+
+        /* Galerie CSS-Styling */
+        .gallery-wrapper {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            background-color: #e5e5e5;
+        }
+
+        .gallery-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            aspect-ratio: 16 / 9;
+        }
+
+        .gallery-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .gallery-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(10, 54, 99, 0.8);
+            color: var(--white);
+            border: none;
+            width: 45px;
+            height: 45px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            user-select: none;
+            transition: background-color 0.2s, color 0.2s;
+            z-index: 10;
+        }
+
+        .gallery-btn:hover {
+            background-color: var(--accent-gold);
+            color: var(--primary-blue);
+        }
+
+        .prev-btn { left: 15px; }
+        .next-btn { right: 15px; }
+
+        /* Impressum Bereich */
+        .impressum-section {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 8px;
+            margin-top: 50px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            font-size: 0.95rem;
+            color: #555;
+            border-top: 4px solid var(--accent-gold);
+        }
+
+        .impressum-section h3 {
+            color: var(--primary-blue);
+            margin-bottom: 15px;
+        }
+
+        .impressum-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 600px) {
+            .logo-container h1 { font-size: 2rem; }
+            .hero h2 { font-size: 1.5rem; }
+            .phone-btn { font-size: 1.1rem; padding: 12px 20px; }
+            .menu-grid { grid-template-columns: 1fr; }
+            .gallery-btn { width: 35px; height: 35px; font-size: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="promo-banner">
+        🍕 PIZZATAG: Jeden Dienstag & Donnerstag jede Pizza nur 7,00 €!
+    </div>
+
+    <header>
+        <div class="logo-container">
+            <h1>Olympos Grill</h1>
+            <p>Anrufen - Bestellen - Abholen</p>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h2>Lust auf griechische Spezialitäten oder ofenfrische Pizza?</h2>
+        <p>Bestellen Sie telefonisch und holen Sie Ihr Essen frisch ab!</p>
+        <a href="tel:0237168131" class="phone-btn">📞 Jetzt anrufen: (02371) 681 31</a>
+    </section>
+
+    <div class="container">
+        
+        <div class="info-grid">
+            <div class="info-card">
+                <h3>🕒 Öffnungszeiten</h3>
+                <table>
+                    <tr><td>Montag</td><td>Ruhetag</td></tr>
+                    <tr><td>Dienstag - Samstag</td><td>11:30 - 22:00 Uhr</td></tr>
+                    <tr><td>Sonn- & Feiertage</td><td>12:30 - 22:00 Uhr</td></tr>
+                </table>
+            </div>
+            <div class="info-card">
+                <h3>📍 Hier finden Sie uns</h3>
+                <p><strong>Olympos Grill</strong></p>
+                <p>Mendener Straße 132</p>
+                <p>58636 Iserlohn</p>
+                <p style="margin-top: 10px; font-size: 0.9rem; color: #666;">Natürlich sind alle Speisen auch zum Mitnehmen!</p>
+            </div>
+        </div>
+
+        <h2 class="menu-title">Unsere vollständige Speisekarte</h2>
+
+        <section class="menu-category">
+            <div class="category-name">Für unsere schnellen Kunden</div>
+            <div class="menu-grid">
+                <div class="menu-item"><div class="item-header"><span>A 1. Gyros Teller mit Pommes Frites und Salat</span><span class="price-tag">10,00 €</span></div></div>
+                <div class="menu-item"><div class="item-header"><span>A 2. Kleiner Gyros Teller mit Pommes Frites und Salat</span><span class="price-tag">8,50 €</span></div></div>
+                <div class="menu-item"><div class="item-header"><span>A 3. Gyros im Schälchen</span><span class="price-tag">8,00 €</span></div></div>
+                <div class="menu-item"><div class="item-header"><span>A 4. Gyros halbe Portion</span><span class="price-tag">6,50 €</span></div></div>
+                <div class="menu-item"><div class="item-header"><span>A 5. Taxi Teller</span><span class="price-tag">9,50 €</span></div></div>
+                <div class="menu-item"><div class="item-header"><span>A 6. Gyros überbacken</span><span class="price-tag">9,50 €</span></div></div>
+                <div class="menu-item"><div class="item-header"><span>A 7. Gyros Pita</span><span class="price-tag">6,00 €</span></div></div>
+                <div class="menu-item"><div class="item-header"><span>A 8. Gyros Pita griechischer Art</span><span class="price-tag">6,50 €</span></div></div>
+                <div class="menu-item"><div class="item-header"><span>A 9. Pita Spezial</span><span class="price-tag">8,00 €</span></div><div class="item-description">Gyros, Hollandaise und Käse überbacken</div></div>
+                <div class="menu-item"><div class="item-header"><span>A 10. Pita mit Bifteki</span><span class="price-tag">5,50 €</span></div></div>
+                <div class="menu-item"><div class="item-header"><span>A 11. Salat-Tasche</span><span class="price-tag">4,50 €</span></div></div>
+                <div class="menu-item"><div class="item-header"><span>A 12. Pommes-Tasche + Sauce oder Mayo</span><span class="price-tag">5,00 €</span></div></div>
+                <div class="menu-item"><div class="item-header"><span>A 13. Salat-Tasche mit Pommes</span><span class="price-tag">6,00 €</span></div></div>
+                <div class="menu-item"><div class="item-header"><span>A 14. Pita mit Gyros und Pommes</span><span class="price-tag">6,50 €</span></div></div>
+                <div class="menu-item"><div class="item-header"><span>A 15. Jägerschnitzel</span><span class="price-tag">8,50 €</span></div></div>
+                <div class="menu-item"><div class="item-header"><span>A 16. Zigeunerschnitzel</span><span class="price-tag">8,50 €</span></div></div>
+                <div class="menu-item"><div class="item-header"><span>A 17. Zwiebelschnitzel</span><span class="price-tag">9,50 €</span></div></div>
+                <div class="menu-item"><div class="item-header"><span>A 18. Hawaiischnitzel</span><span class="price-tag">9,50 €</span></div></div>
+                <div class="menu-item"><div class="item-header"><span>A 19. Käseschnitzel</span><span class="price-tag">9,50 €</span></div><div class="item-description">Käse, Champignons u. Sauce Hollandaise</div></div>
+                <div class="menu-item"><div class="item-header"><span>A 20. Champignon-Rahmschnitzel</span><span class="price-tag">8,50 €</span></div></div>
+                <div class="menu-item"><div class="item-header"><span>A 21. Bearnaiseschnitzel</span><span class="price-tag">8,50 €</span></div></div>
+                <div class="menu-item"><div class="item-header"><span>A 22. Bratwurst</span><span class="price-tag">3,00 €</span></div></div>
+                <div class="menu-item"><div class="item-header"><span>A 23. Jägerwurst</span><span class="price-tag">3,50 €</span></div></div>
+                <div class="menu-item"><div class="item-header"><span>A 24. Zigeunerwurst</span><span class="price-tag">3,50 €</span></div></div>
+                <div class="menu-item"><div class="item-header"><span>A 25. Currywurst</span><span class="price-tag">3,50 €</span></div></div>
+                <div class="menu-item"><div class="item-header"><span>A 26. Zwiebelwurst</span><span class="price-tag">3,50 €</span></div></div>
+                <div class="menu-item"><div class="item-header"><span>A 27. Frikadelle</span><span class="price-tag">3,00 €</span></div></div>
+                <div class="menu-item"><div class="item-header"><span>A 28. Hamburger</span><span class="price-tag">4,50 €</span></div></div>
+                <div class="menu-item"><div class="item-header"><span>A 29. Gyros-Burger</span><span class="price-tag">5,50 €</span></div></div>
+                <div class="menu-item"><div class="item-header"><span>A 30. Cheese-Burger</span><span class="price-tag">4,50 €</span></div></div>
+                <div class="menu-item"><div class="item-header"><span>A 31. Hot Dog</span><span class="price-tag">3,50 €</span></div></div>
+                <div class="menu-item"><div class="item-header"><span>A 32. Kartoffelkroketten</span><span class="price-tag">5,00 €</span></div></div>
+                <div class="menu-item"><div class="item-header"><span>A 33. Fleischkroketten (3 Stk.)</span><span class="price-tag">6,50 €</span></div></div>
+                <div class="menu-item"><div class="item-header"><span>A 34. Hähnchenschnitzel</span><span class="price-tag">3,50 €</span></div></div>
+                <div class="menu-item"><div class="item-header"><span>A 35. Reis</span><span class="price-tag">3,50 €</span></div></div>
+                <div class="menu-item"><div class="item-header"><span>A 36. Pommes Frites kl.</span><span class="price-tag">2,50 €</span></div></div>
+                <div class="menu-item"><div class="item-header"><span>A 37. Pommes Frites gr.</span><span class="price-tag">3,50 €</span></div></div>
+                <div class="menu-item"><div class="item-header"><span>A 38. Rösti</span><span class="price-tag">3,00 €</span></div></div>
+                <div class="menu-item"><div class="item-header"><span>A 39. Chicken Nuggets (6 Stk.)</span><span class="price-tag">4,50 €</span></div></div>
+                <div class="menu-item"><div class="item-header"><span>A 40. Chicken Nuggets + Pommes Frites</span><span class="price-tag">6,00 €</span></div></div>
+            </div>
+        </section>
+
+        <section class="menu-category">
+            <div class="category-name">Gerichte vom Grill</div>
+            <div class="menu-grid">
+                <div class="menu-item"><div class="item-header"><span>G 1. Grill Teller</span><span class="price-tag">14,50 €</span></div><div class="item-description">Gyros, Souvlaki, Cevapcici, Steak, Pommes Frites und Salat</div></div>
+                <div class="menu-item"><div class="item-header"><span>G 2. Arena Teller</span><span class="price-tag">13,50 €</span></div><div class="item-description">Gyros, Steak, 2 Souvlaki, Pommes Frites und Salat</div></div>
+                <div class="menu-item"><div class="item-header"><span>G 3. Olympia Teller</span><span class="price-tag">14,50 €</span></div><div class="item-description">Gyros, Steak, Souvlaki, Pommes Frites und Salat</div></div>
+                <div class="menu-item"><div class="item-header"><span>G 4. Souvlaki Teller</span><span class="price-tag">12,50 €</span></div><div class="item-description">2 Souvlaki, Pommes Frites und Salat</div></div>
+                <div class="menu-item"><div class="item-header"><span>G 5. Cevapcici Teller</span><span class="price-tag">12,50 €</span></div><div class="item-description">3 Cevapcici, Pommes Frites und Salat</div></div>
+                <div class="menu-item"><div class="item-header"><span>G 6. Athen Teller</span><span class="price-tag">13,00 €</span></div><div class="item-description">3 kleine Steaks mit Zigeunersauce, Pommes Frites und Salat</div></div>
+                <div class="menu-item"><div class="item-header"><span>G 7. Bifteki Teller</span><span class="price-tag">13,50 €</span></div><div class="item-description">Hackfleisch mit Feta-Käse gefüllt, Reis und Salat</div></div>
+                <div class="menu-item"><div class="item-header"><span>G 8. Samos Teller</span><span class="price-tag">12,00 €</span></div><div class="item-description">3 kleine Steaks mit Tzatziki, Pommes Frites und Salat</div></div>
+                <div class="menu-item"><div class="item-header"><span>G 9. Mykonos Teller</span><span class="price-tag">12,50 €</span></div><div class="item-description">Gyros, Leber, Reis und Salat</div></div>
+                <div class="menu-item"><div class="item-header"><span>G 10. Rhodos Teller</span><span class="price-tag">13,50 €</span></div><div class="item-description">Gyros, 2 Cevapcici, Pommes Frites und Salat</div></div>
+                <div class="menu-item"><div class="item-header"><span>G 11. Thasos Teller</span><span class="price-tag">12,00 €</span></div><div class="item-description">1 Steak, 1 Souvlaki, 1 Cevapcici, Pommes Frites und Salat</div></div>
+                <div class="menu-item"><div class="item-header"><span>G 12. Paros Teller</span><span class="price-tag">12,50 €</span></div><div class="item-description">Leber mit Röstzwiebeln, Pommes Frites und Salat</div></div>
+                <div class="menu-item"><div class="item-header"><span>G 13. Meteora Teller</span><span class="price-tag">11,00 €</span></div><div class="item-description">Gyros überbacken mit Käse, Pommes Frites und Salat</div></div>
+                <div class="menu-item"><div class="item-header"><span>G 14. Metaxa Teller</span><span class="price-tag">11,50 €</span></div><div class="item-description">Gyros mit Metaxasauce, Pommes Frites und Salat</div></div>
+                <div class="menu-item"><div class="item-header"><span>G 15. Korfu Teller</span><span class="price-tag">12,50 €</span></div><div class="item-description">Leber mit Metaxasauce, Pommes Frites und Salat</div></div>
+                <div class="menu-item"><div class="item-header"><span>G 16. Kavala Teller</span><span class="price-tag">12,50 €</span></div><div class="item-description">2 Souvlaki mit Röstzwiebeln, Pommes Frites und Salat</div></div>
+                <div class="menu-item"><div class="item-header"><span>G 17. Saloniki Teller</span><span class="price-tag">12,50 €</span></div><div class="item-description">3 kleine Steaks mit Metaxasauce, Pommes Frites und Salat</div></div>
+                <div class="menu-item"><div class="item-header"><span>G 18. Georg Teller</span><span class="price-tag">15,50 €</span></div><div class="item-description">Souvlaki, Gyros, Tzatziki, Pommes Frites und Salat</div></div>
+                <div class="menu-item"><div class="item-header"><span>G 19. Filet Teller</span><span class="price-tag">16,00 €</span></div><div class="item-description">Schweinefilet mit Pommes Frites und Salat</div></div>
+                <div class="menu-item"><div class="item-header"><span>G 20. Filet Spezial</span><span class="price-tag">16,00 €</span></div><div class="item-description">Schweinefilet mit Metaxasauce, Pommes Frites und Salat</div></div>
+                <div class="menu-item"><div class="item-header"><span>G 21. Bifteki ohne Beilagen</span><span class="price-tag">10,00 €</span></div><div class="item-description">Hackfleisch gefüllt mit Feta-Käse</div></div>
+                <div class="menu-item"><div class="item-header"><span>G 22. Rinderhacksteak</span><span class="price-tag">12,50 €</span></div><div class="item-description">Pommes Frites und Salat</div></div>
+                <div class="menu-item"><div class="item-header"><span>G 23. Cordon Bleu</span><span class="price-tag">12,00 €</span></div><div class="item-description">2 Stück mit Pommes Frites und Salat</div></div>
+                <div class="menu-item"><div class="item-header"><span>G 24. Zwiebelsteak</span><span class="price-tag">11,50 €</span></div></div>
+                <div class="menu-item"><div class="item-header"><span>G 25. Champignonsteak</span><span class="price-tag">11,50 €</span></div></div>
+                <div class="menu-item"><div class="item-header"><span>G 26. Pfeffersteak</span><span class="price-tag">13,00 €</span></div><div class="item-description">mit Rösti und Salat</div></div>
+                <div class="menu-item"><div class="item-header"><span>G 27. Pfefferschnitzel</span><span class="price-tag">12,50 €</span></div><div class="item-description">mit Pommes Frites oder Reis und Salat</div></div>
+                <div class="menu-item"><div class="item-header"><span>G 28. Pfefter Teller</span><span class="price-tag">16,00 €</span></div><div class="item-description">3 kleine Steaks mit Pommes Frites und Salat</div></div>
+                <div class="menu-item"><div class="item-header"><span>G 29. Skiathos Teller</span><span class="price-tag">16,00 €</span></div><div class="item-description">Schweinefilet mit Pfeffersauce, Pommes Frites und Salat</div></div>
+            </div>
+        </section>
+
+        <section class="menu-category">
+            <div class="category-name">Ofenfrische Pizzen</div>
+            <div class="menu-grid">
+                <div class="menu-item"><div class="item-header"><span>P 1. Margherita</span><span class="pizza-prices"><span>Kl: 4,00€</span><span>Gr: 7,00€</span></span></div><div class="item-description">Tomaten, Käse</div></div>
+                <div class="menu-item"><div class="item-header"><span>P 2. Salami</span><span class="pizza-prices"><span>Kl: 4,50€</span><span>Gr: 7,50€</span></span></div><div class="item-description">Tomaten, Käse, Salami</div></div>
+                <div class="menu-item"><div class="item-header"><span>P 3. Prosciutto</span><span class="pizza-prices"><span>Kl: 4,50€</span><span>Gr: 7,50€</span></span></div><div class="item-description">Tomaten, Käse, Schinken</div></div>
+                <div class="menu-item"><div class="item-header"><span>P 4. Funghi</span><span class="pizza-prices"><span>Kl: 4,50€</span><span>Gr: 7,50€</span></span></div><div class="item-description">Tomaten, Käse, Champignons</div></div>
+                <div class="menu-item"><div class="item-header"><span>P 5. Tonno</span><span class="pizza-prices"><span>Kl: 4,50€</span><span>Gr: 8,50€</span></span></div><div class="item-description">Tomaten, Käse, Thunfisch, Zwiebelringe</div></div>
+                <div class="menu-item"><div class="item-header"><span>P 6. Cipolla</span><span class="pizza-prices"><span>Kl: 4,50€</span><span>Gr: 7,00€</span></span></div><div class="item-description">Tomaten, Käse, Zwiebeln</div></div>
+                <div class="menu-item"><div class="item-header"><span>P 7. Fantasia</span><span class="pizza-prices"><span>Kl: 5,50€</span><span>Gr: 10,00€</span></span></div><div class="item-description">gemischt, von allem etwas</div></div>
+                <div class="menu-item"><div class="item-header"><span>P 8. Calzone</span><span class="pizza-prices"><span>Gr: 10,00€</span></span></div><div class="item-description">Tomaten, Käse, Champignons, Paprika, Schinken</div></div>
+                <div class="menu-item"><div class="item-header"><span>P 9. Hawaii</span><span class="pizza-prices"><span>Kl: 5,00€</span><span>Gr: 8,00€</span></span></div><div class="item-description">Tomaten, Käse, Schinken, Ananas</div></div>
+                <div class="menu-item"><div class="item-header"><span>P 10. Arena</span><span class="pizza-prices"><span>Kl: 5,50€</span><span>Gr: 10,00€</span></span></div><div class="item-description">Tomaten, Käse, Gyros, Peperoni</div></div>
+                <div class="menu-item"><div class="item-header"><span>P 11. Paprika</span><span class="pizza-prices"><span>Kl: 4,50€</span><span>Gr: 7,50€</span></span></div><div class="item-description">Tomaten, Käse, Paprika</div></div>
+                <div class="menu-item"><div class="item-header"><span>P 12. Diavolo</span><span class="pizza-prices"><span>Kl: 4,50€</span><span>Gr: 8,00€</span></span></div><div class="item-description">Tomaten, Käse, Peperoni, Schinken</div></div>
+                <div class="menu-item"><div class="item-header"><span>P 13. Roma</span><span class="pizza-prices"><span>Kl: 5,00€</span><span>Gr: 8,50€</span></span></div><div class="item-description">Tomaten, Käse, Champignons, Salami</div></div>
+                <div class="menu-item"><div class="item-header"><span>P 14. Sizilia</span><span class="pizza-prices"><span>Kl: 5,00€</span><span>Gr: 8,50€</span></span></div><div class="item-description">Tomaten, Käse, Champignons, Schinken</div></div>
+                <div class="menu-item"><div class="item-header"><span>P 15. Scampi</span><span class="pizza-prices"><span>Kl: 5,00€</span><span>Gr: 9,50€</span></span></div><div class="item-description">Tomaten, Käse, Scampis, rote Paprika</div></div>
+                <div class="menu-item"><div class="item-header"><span>P 16. Quattro Stagioni</span><span class="pizza-prices"><span>Kl: 5,50€</span><span>Gr: 10,00€</span></span></div><div class="item-description">Tomaten, Käse, Champignons, Schinken, Thunfisch, Zwiebeln</div></div>
+                <div class="menu-item"><div class="item-header"><span>P 17. Olympia</span><span class="pizza-prices"><span>Kl: 5,50€</span><span>Gr: 10,00€</span></span></div><div class="item-description">Tomaten, Käse, Champignons, Schinken, Salami, Paprika, Oliven, Peperoni</div></div>
+                <div class="menu-item"><div class="item-header"><span>P 18. Speziale</span><span class="pizza-prices"><span>Kl: 5,50€</span><span>Gr: 10,00€</span></span></div><div class="item-description">Tomaten, Käse, Champignons, Salami, Artischocken, Schinken, Paprika, Oliven</div></div>
+                <div class="menu-item"><div class="item-header"><span>P 19. Artischocken</span><span class="pizza-prices"><span>Kl: 4,50€</span><span>Gr: 8,50€</span></span></div><div class="item-description">Tomaten, Käse, Champignons, rote Paprika, Artischocken</div></div>
+                <div class="menu-item"><div class="item-header"><span>P 20. Vier Stationen</span><span class="pizza-prices"><span>Kl: 5,50€</span><span>Gr: 10,00€</span></span></div><div class="item-description">Tomaten, Käse, Schinken, Sardellen, Oliven, Zwiebeln, Peperoni</div></div>
+                <div class="menu-item"><div class="item-header"><span>P 21. Sucuk</span><span class="pizza-prices"><span>Kl: 5,50€</span><span>Gr: 10,00€</span></span></div><div class="item-description">Tomaten, Käse, Sucuk, Feta-Käse</div></div>
+            </div>
+        </section>
+
+        <section class="menu-category">
+            <div class="category-name">Baguettes (mit Käse überbacken, Remoulade & Salat)</div>
+            <div class="menu-grid">
+                <div class="menu-item"><div class="item-header"><span>B 1. Georg Baguette</span><span class="price-tag">7,00 €</span></div><div class="item-description">mit Tomaten, Gyros, Zwiebeln</div></div>
+                <div class="menu-item"><div class="item-header"><span>B 2. Gyros Baguette</span><span class="price-tag">7,50 €</span></div><div class="item-description">mit Tomaten, Gyros, Tzatziki</div></div>
+                <div class="menu-item"><div class="item-header"><span>B 3. Salami Baguette</span><span class="price-tag">6,50 €</span></div><div class="item-description">mit Tomaten, Salami</div></div>
+                <div class="menu-item"><div class="item-header"><span>B 4. Schinken Baguette</span><span class="price-tag">6,50 €</span></div><div class="item-description">mit Tomaten, Schinken</div></div>
+                <div class="menu-item"><div class="item-header"><span>B 5. Hawaii Baguette</span><span class="price-tag">7,00 €</span></div><div class="item-description">mit Tomaten, Schinken, Ananas</div></div>
+                <div class="menu-item"><div class="item-header"><span>B 6. Feta Baguette</span><span class="price-tag">7,00 €</span></div><div class="item-description">mit Tomaten, Feta-Käse</div></div>
+                <div class="menu-item"><div class="item-header"><span>B 7. Ei Baguette</span><span class="price-tag">6,50 €</span></div><div class="item-description">mit Tomaten, Ei</div></div>
+                <div class="menu-item"><div class="item-header"><span>B 8. Champignon Baguette</span><span class="price-tag">7,00 €</span></div><div class="item-description">mit Tomaten, Champignons, Zwiebeln</div></div>
+                <div class="menu-item"><div class="item-header"><span>B 9. Thunfisch Baguette</span><span class="price-tag">7,50 €</span></div><div class="item-description">mit Tomaten, Thunfisch, Zwiebeln</div></div>
+                <div class="menu-item"><div class="item-header"><span>B 10. Lachs Baguette</span><span class="price-tag">7,50 €</span></div><div class="item-description">mit Tomaten, Lachs, Zwiebeln</div></div>
+                <div class="menu-item"><div class="item-header"><span>B 11. Schink-Lett Baguette</span><span class="price-tag">6,50 €</span></div><div class="item-description">mit Tomaten, Omelette</div></div>
+                <div class="menu-item"><div class="item-header"><span>B 12. Omelett Baguette</span><span class="price-tag">7,00 €</span></div><div class="item-description">mit Tomaten, Omelette, Feta-Käse</div></div>
+                <div class="menu-item"><div class="item-header"><span>B 13. Paprika Baguette</span><span class="price-tag">6,50 €</span></div><div class="item-description">mit Tomaten, Paprika</div></div>
+                <div class="menu-item"><div class="item-header"><span>B 14. Sucuk Baguette</span><span class="price-tag">7,50 €</span></div><div class="item-description">mit Tomaten, Sucuk</div></div>
+            </div>
+        </section>
+
+        <section class="menu-category">
+            <div class="category-name">Frische Salate</div>
+            <div class="menu-grid">
+                <div class="menu-item"><div class="item-header"><span>S 1. Bauernsalat</span><span class="price-tag">4,00 €</span></div></div>
+                <div class="menu-item"><div class="item-header"><span>S 2. Krautsalat</span><span class="price-tag">3,50 €</span></div></div>
+                <div class="menu-item"><div class="item-header"><span>S 3. Bohnensalat</span><span class="price-tag">3,50 €</span></div></div>
+                <div class="menu-item"><div class="item-header"><span>S 4. Mexicosalat</span><span class="price-tag">3,50 €</span></div></div>
+                <div class="menu-item"><div class="item-header"><span>S 5. Tzatziki</span><span class="price-tag">3,50 €</span></div></div>
+                <div class="menu-item"><div class="item-header"><span>S 6. Kretasalat</span><span class="price-tag">3,50 €</span></div></div>
+                <div class="menu-item"><div class="item-header"><span>S 7. Gurkensalat mit Sahne</span><span class="price-tag">4,00 €</span></div></div>
+                <div class="menu-item"><div class="item-header"><span>S 8. Bohnensalat mit Sahne</span><span class="price-tag">4,00 €</span></div></div>
+                <div class="menu-item"><div class="item-header"><span>S 9. Salat Teller (500g)</span><span class="price-tag">7,50 €</span></div></div>
+                <div class="menu-item"><div class="item-header"><span>S 10. Salat Teller (750g)</span><span class="price-tag">9,00 €</span></div></div>
+                <div class="menu-item"><div class="item-header"><span>S 11. Feta-Käse</span><span class="price-tag">5,00 €</span></div></div>
+                <div class="menu-item"><div class="item-header"><span>S 12. Oliven</span><span class="price-tag">4,00 €</span></div></div>
+                <div class="menu-item"><div class="item-header"><span>S 13. Peperoni</span><span class="price-tag">3,50 €</span></div></div>
+                <div class="menu-item"><div class="item-header"><span>S 14. Saganaki Feta-Käse</span><span class="price-tag">6,50 €</span></div><div class="item-description">mit Spezialitäten vom Chef</div></div>
+                <div class="menu-item"><div class="item-header"><span>S 15. Gyrossalat</span><span class="price-tag">10,00 €</span></div></div>
+                <div class="menu-item"><div class="item-header"><span>S 16. Thunfischsalat</span><span class="price-tag">9,50 €</span></div></div>
+            </div>
+        </section>
+
+        <section class="menu-category">
+            <div class="category-name">Saucen</div>
+            <div class="menu-grid">
+                <div class="menu-item"><div class="item-header"><span>C 1. Currysauce</span><span class="price-tag">0,50 €</span></div></div>
+                <div class="menu-item"><div class="item-header"><span>C 2. Mayonnaise</span><span class="price-tag">0,50 €</span></div></div>
+                <div class="menu-item"><div class="item-header"><span>C 3. Ketchup</span><span class="price-tag">0,50 €</span></div></div>
+                <div class="menu-item"><div class="item-header"><span>C 4. Zigeunersauce</span><span class="price-tag">1,50 €</span></div></div>
+                <div class="menu-item"><div class="item-header"><span>C 5. Jägersauce</span><span class="price-tag">1,50 €</span></div></div>
+                <div class="menu-item"><div class="item-header"><span>C 6. Metaxasauce</span><span class="price-tag">1,50 €</span></div></div>
+                <div class="menu-item"><div class="item-header"><span>C 7. Pfeffersauce</span><span class="price-tag">1,50 €</span></div></div>
+                <div class="menu-item"><div class="item-header"><span>C 8. Hollandaisesauce</span><span class="price-tag">2,00 €</span></div></div>
+                <div class="menu-item"><div class="item-header"><span>C 9. Rahmsauce</span><span class="price-tag">2,00 €</span></div></div>
+                <div class="menu-item"><div class="item-header"><span>C 10. Sauce Béarnaise</span><span class="price-tag">2,00 €</span></div></div>
+                <div class="menu-item"><div class="item-header"><span>C 11. Schlag Tzatziki</span><span class="price-tag">2,00 €</span></div></div>
+            </div>
+        </section>
+
+        <section class="menu-category">
+            <div class="category-name">Extra Beilagen</div>
+            <div class="menu-grid">
+                <div class="menu-item"><div class="item-header"><span>E 1. Souvlaki</span><span class="price-tag">3,20 €</span></div></div>
+                <div class="menu-item"><div class="item-header"><span>E 2. Steak</span><span class="price-tag">4,50 €</span></div></div>
+                <div class="menu-item"><div class="item-header"><span>E 3. Cevapcici</span><span class="price-tag">4,00 €</span></div></div>
+                <div class="menu-item"><div class="item-header"><span>E 4. Schweinefilet</span><span class="price-tag">5,50 €</span></div></div>
+                <div class="menu-item"><div class="item-header"><span>E 5. Portion Leber</span><span class="price-tag">4,50 €</span></div></div>
+                <div class="menu-item"><div class="item-header"><span>E 6. Leber Stück</span><span class="price-tag">3,00 €</span></div></div>
+                <div class="menu-item"><div class="item-header"><span>E 7. Cordon Bleu Stück</span><span class="price-tag">4,50 €</span></div></div>
+                <div class="menu-item"><div class="item-header"><span>E 8. Rinderhacksteak</span><span class="price-tag">6,00 €</span></div></div>
+            </div>
+        </section>
+
+        <section class="menu-category">
+            <div class="category-name">Getränke & Weine</div>
+            <div class="menu-grid">
+                <div class="menu-item"><div class="item-header"><span>G 1. Coca Cola (0,33l)</span><span class="price-tag">3,00 €</span></div></div>
+                <div class="menu-item"><div class="item-header"><span>G 2. Coca Cola Light / Zero (0,33l)</span><span class="price-tag">3,00 €</span></div></div>
+                <div class="menu-item"><div class="item-header"><span>G 3. Sprite (0,33l)</span><span class="price-tag">3,00 €</span></div></div>
+                <div class="menu-item"><div class="item-header"><span>G 4. Fanta (0,33l)</span><span class="price-tag">3,00 €</span></div></div>
+                <div class="menu-item"><div class="item-header"><span>G 5. Mineralwasser (0,33l)</span><span class="price-tag">3,00 €</span></div></div>
+                <div class="menu-item"><div class="item-header"><span>G 6. Apfelschorle (0,33l)</span><span class="price-tag">3,00 €</span></div></div>
+                <div class="menu-item"><div class="item-header"><span>G 7. Bier (0,33l)</span><span class="price-tag">3,00 €</span></div></div>
+                <div class="menu-item"><div class="item-header"><span>W 1. Ouzo (2cl / 0,2l)</span><span class="price-tag">3,50 € / 6,50 €</span></div></div>
+                <div class="menu-item"><div class="item-header"><span>W 2. Imiglikos - halbtrocken (0,25l)</span><span class="price-tag">5,00 €</span></div></div>
+                <div class="menu-item"><div class="item-header"><span>W 3. Demestica herb (0,25l)</span><span class="price-tag">5,00 €</span></div></div>
+                <div class="menu-item"><div class="item-header"><span>W 4. Mavrodaphne süß rot (0,25l)</span><span class="price-tag">5,50 €</span></div></div>
+            </div>
+        </section>
+
+        <section class="menu-category">
+            <div class="category-name">Familien & Party Platten</div>
+            <div class="menu-grid">
+                <div class="menu-item"><div class="item-header"><span>2 Personen Platte</span><span class="price-tag">35,00 €</span></div><div class="item-description">Gyros, 2x Souvlaki, 2x Steak, 2x Cevapcici, 2x Cordon Bleu, Tzatziki, Pommes Frites und Salat. +0,2l Ouzo</div></div>
+                <div class="menu-item"><div class="item-header"><span>4 Personen Platte</span><span class="price-tag">75,00 €</span></div><div class="item-description">Gyros, 4x Souvlaki, 4x Steak, 4x Cevapcici, 2x Leber, 2x Bifteki, Tzatziki, Pommes Frites und Salat. +Flasche Wein 0,7l</div></div>
+            </div>
+        </section>
+
+        <section class="menu-category">
+            <div class="category-name">Eindrücke aus unserem Grill</div>
+            <div class="gallery-wrapper">
+                <div class="gallery-container">
+                    <button class="gallery-btn prev-btn" onclick="changeImage(-1)">&#10094;</button>
+                    <img id="gallery-img" src="https://images.unsplash.com/photo-1606787366850-de6330128bfc?auto=format&fit=crop&w=800&q=80" alt="Olympos Grill Galerie">
+                    <button class="gallery-btn next-btn" onclick="changeImage(1)">&#10095;</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="impressum-section">
+            <h3>Impressum</h3>
+            <div class="impressum-grid">
+                <div>
+                    <p><strong>Angaben gemäß § 5 TMG:</strong></p>
+                    <p>Olympos Grill Iserlohn</p>
+                    <p>Inhaber: [Name des Inhabers]</p>
+                    <p>Mendener Straße 132</p>
+                    <p>58636 Iserlohn</p>
+                </div>
+                <div>
+                    <p><strong>Kontakt:</strong></p>
+                    <p>Telefon: (02371) 681 31</p>
+                    <p>E-Mail: [Deine-E-Mail@beispiel.de]</p>
+                </div>
+                <div>
+                    <p><strong>Umsatzsteuer-ID:</strong></p>
+                    <p>Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz: [Umsatzsteuer-ID]</p>
+                    <p style="margin-top: 10px; font-size: 0.8rem;">Aufsichtsbehörde: Ordnungsamt Iserlohn</p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Olympos Grill Iserlohn. Alle Preise in Euro inkl. MwSt. Alle Flaschen inklusive Pfand. Alle Angaben ohne Gewähr.</p>
+    </footer>
+
+    <script>
+        let currentImgIndex = 0;
+        const images = [
+            "https://images.unsplash.com/photo-1606787366850-de6330128bfc?auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80"
+        ];
+
+        function changeImage(direction) {
+            currentImgIndex += direction;
+            if (currentImgIndex >= images.length) {
+                currentImgIndex = 0;
+            } else if (currentImgIndex < 0) {
+                currentImgIndex = images.length - 1;
+            }
+            document.getElementById('gallery-img').src = images[currentImgIndex];
+        }
+    </script>
+
+</body>
+</html>
